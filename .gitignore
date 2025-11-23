@@ -62,6 +62,9 @@ local.properties
 .DS_Store
 Thumbs.db
 
+# Imagenes locales
+*.png
+
 # Documentación local (no versionada)
 *.md
 !README.md
