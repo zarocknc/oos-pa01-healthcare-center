@@ -49,6 +49,135 @@ Luego, ejecuta la aplicación Spring Boot (ejemplos):
 La API quedará disponible en `http://localhost:8080`.
 
 
+## Ejecutar Tests y Generar Reporte de Cobertura
+
+El proyecto incluye una suite completa de tests con **86 tests** que cubren el **83%** del código.
+
+### Ejecutar todos los tests
+
+Para ejecutar todos los tests del proyecto:
+
+```bash
+./mvnw test
+```
+
+O si necesitas limpiar antes de ejecutar:
+
+```bash
+./mvnw clean test
+```
+
+### Ejecutar tests de una clase específica
+
+Para ejecutar solo los tests de una clase:
+
+```bash
+# Tests de servicios
+./mvnw test -Dtest="CentroDeSaludServiceTest"
+
+# Tests de repositorios
+./mvnw test -Dtest="CalificacionRepositoryTest"
+
+# Tests de controladores
+./mvnw test -Dtest="CentroDeSaludControllerTest"
+```
+
+### Ejecutar tests por patrón
+
+Para ejecutar todos los tests de un tipo:
+
+```bash
+# Todos los tests de servicios
+./mvnw test -Dtest="*ServiceTest"
+
+# Todos los tests de repositorios
+./mvnw test -Dtest="*RepositoryTest"
+
+# Todos los tests de controladores
+./mvnw test -Dtest="*ControllerTest"
+```
+
+### Generar reporte de cobertura con JaCoCo
+
+JaCoCo se ejecuta automáticamente cuando corres los tests. Para generar y visualizar el reporte de cobertura:
+
+```bash
+# Ejecutar tests y generar reporte
+./mvnw clean test jacoco:report
+```
+
+El reporte HTML se genera en:
+```
+target/site/jacoco/index.html
+```
+
+Para abrir el reporte en tu navegador (macOS):
+```bash
+open target/site/jacoco/index.html
+```
+
+En Linux:
+```bash
+xdg-open target/site/jacoco/index.html
+```
+
+En Windows:
+```bash
+start target/site/jacoco/index.html
+```
+
+### Estructura de los tests
+
+El proyecto incluye los siguientes tipos de tests:
+
+- **Tests de Entidades** (14 tests): Prueban la lógica de negocio en las entidades
+  - `CalificacionTest.java` - Cálculo de calificaciones
+  - `CentroDeSaludTest.java` - Métodos de negocio
+
+- **Tests de Repositorios** (10 tests): Pruebas de integración con `@DataJpaTest`
+  - `CalificacionRepositoryTest.java` - Queries personalizadas
+  - `CentroDeSaludRepositoryTest.java` - Filtros y búsquedas
+
+- **Tests de Servicios** (36 tests): Tests unitarios con Mockito
+  - `CalificacionServiceTest.java`
+  - `CentroDeSaludServiceTest.java`
+  - `RegionServiceTest.java`
+  - `TipoCentroServiceTest.java`
+  - `AmbulanciaServiceTest.java`
+
+- **Tests de Controladores** (24 tests): Tests de endpoints con `@WebMvcTest`
+  - `CentroDeSaludControllerTest.java`
+  - `CalificacionControllerTest.java`
+
+### Cobertura de código
+
+Cobertura actual por paquete:
+- **Config (DataLoader)**: 100%
+- **Entity**: 96%
+- **Service**: 75%
+- **Controller**: 64%
+- **Total**: 83% ✓
+
+### Requisitos para ejecutar los tests
+
+- Java 21
+- Maven 3.6+
+- No es necesario que PostgreSQL esté corriendo para los tests (se usa H2 en memoria)
+
+### Configurar Java 21
+
+Si necesitas configurar Java 21:
+
+```bash
+# macOS con Homebrew
+export JAVA_HOME=/opt/homebrew/opt/openjdk@21
+export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
+
+# Verificar versión
+java -version
+```
+
+
 ## AmbulanciaController
 Ruta base: `/ambulancias`
 

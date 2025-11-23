@@ -64,3 +64,4 @@ Thumbs.db
 
 # Documentación local (no versionada)
 *.md
+!README.md
