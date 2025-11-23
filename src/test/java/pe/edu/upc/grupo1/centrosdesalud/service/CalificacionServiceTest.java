@@ -28,7 +28,7 @@ class CalificacionServiceTest {
     private CentroDeSaludRepository centroDeSaludRepository;
 
     @InjectMocks
-    private CalificacionService calificacionService;
+    private CalificacionServiceImpl calificacionService;
 
     private Region lima;
     private TipoCentro hospital;

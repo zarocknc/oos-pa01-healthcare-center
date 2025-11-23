@@ -25,11 +25,12 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(CalificacionController.class)
+@WebMvcTest(CalificacionControllerImpl.class)
 class CalificacionControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
 
     @Autowired
     private ObjectMapper objectMapper;

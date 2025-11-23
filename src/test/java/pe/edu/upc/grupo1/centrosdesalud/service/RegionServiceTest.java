@@ -23,7 +23,7 @@ class RegionServiceTest {
     private RegionRepository regionRepository;
 
     @InjectMocks
-    private RegionService regionService;
+    private RegionServiceImpl regionService;
 
     private Region lima;
     private Region arequipa;

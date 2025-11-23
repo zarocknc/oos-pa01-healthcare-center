@@ -26,7 +26,7 @@ class AmbulanciaServiceTest {
     private AmbulanciaRepository ambulanciaRepository;
 
     @InjectMocks
-    private AmbulanciaService ambulanciaService;
+    private AmbulanciaServiceImpl ambulanciaService;
 
     private CentroDeSalud centro;
     private Ambulancia ambulancia;

@@ -24,7 +24,7 @@ class CentroDeSaludServiceTest {
     private CentroDeSaludRepository centroDeSaludRepository;
 
     @InjectMocks
-    private CentroDeSaludService centroDeSaludService;
+    private CentroDeSaludServiceImpl centroDeSaludService;
 
     private Region lima;
     private TipoCentro hospital;

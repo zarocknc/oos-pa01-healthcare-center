@@ -23,7 +23,7 @@ class TipoCentroServiceTest {
     private TipoCentroRepository tipoCentroRepository;
 
     @InjectMocks
-    private TipoCentroService tipoCentroService;
+    private TipoCentroServiceImpl tipoCentroService;
 
     private TipoCentro hospital;
     private TipoCentro clinica;
