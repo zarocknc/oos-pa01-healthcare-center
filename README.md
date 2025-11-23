@@ -1,0 +1,195 @@
+# API de Centros de Salud — Controladores y Operaciones
+
+Este documento lista todas las operaciones HTTP expuestas por los controladores del paquete `controller` de este proyecto.
+
+URL base (Spring Boot por defecto): `http://localhost:8080`
+
+Nota: Todos los endpoints devuelven códigos de estado HTTP estándar. `404 Not Found` se usa cuando una entidad no existe; `400 Bad Request` para entradas inválidas; `201 Created` cuando la creación es exitosa; `204 No Content` cuando la eliminación es exitosa.
+
+
+## AmbulanciaController
+Ruta base: `/ambulancias`
+
+- GET `/ambulancias`
+  - Descripción: Listar todas las ambulancias.
+  - Respuesta: `200 OK` con `List<Ambulancia>`
+
+- GET `/ambulancias/{id}`
+  - Descripción: Obtener una ambulancia por su ID.
+  - Parámetros de ruta: `id` (Long)
+  - Respuesta:
+    - `200 OK` con `Ambulancia`
+    - `404 Not Found` si no existe
+
+- POST `/ambulancias`
+  - Descripción: Crear una nueva ambulancia.
+  - Cuerpo: `Ambulancia`
+  - Respuesta:
+    - `201 Created` con la `Ambulancia` creada
+    - `400 Bad Request` si los datos son inválidos
+
+- DELETE `/ambulancias/{id}`
+  - Descripción: Eliminar una ambulancia por ID.
+  - Parámetros de ruta: `id` (Long)
+  - Respuesta: `204 No Content`
+
+
+## CalificacionController
+Ruta base: `/calificaciones`
+
+- GET `/calificaciones`
+  - Descripción: Listar todas las calificaciones.
+  - Respuesta: `200 OK` con `List<Calificacion>`
+
+- GET `/calificaciones/{id}`
+  - Descripción: Obtener una calificación por ID.
+  - Parámetros de ruta: `id` (Long)
+  - Respuesta:
+    - `200 OK` con `Calificacion`
+    - `404 Not Found` si no existe
+
+- GET `/calificaciones/centro/{centroId}`
+  - Descripción: Listar calificaciones de un centro específico.
+  - Parámetros de ruta: `centroId` (Long)
+  - Respuesta:
+    - `200 OK` con `List<Calificacion>` si el centro existe
+    - `404 Not Found` si el centro no existe
+
+- POST `/calificaciones`
+  - Descripción: Crear una nueva calificación.
+  - Cuerpo: `Calificacion`
+  - Respuesta:
+    - `201 Created` con la `Calificacion` creada
+    - `400 Bad Request` si los datos son inválidos
+
+- DELETE `/calificaciones/{id}`
+  - Descripción: Eliminar una calificación por ID.
+  - Parámetros de ruta: `id` (Long)
+  - Respuesta: `204 No Content`
+
+
+## CentroDeSaludController
+Ruta base: `/centros`
+
+- GET `/centros`
+  - Descripción: Listar todos los centros de salud.
+  - Respuesta: `200 OK` con `List<CentroDeSalud>`
+
+- GET `/centros/con-calificaciones`
+  - Descripción: Listar centros de salud incluyendo sus calificaciones relacionadas.
+  - Respuesta: `200 OK` con `List<CentroDeSalud>`
+
+- GET `/centros/tipo/{tipo}`
+  - Descripción: Listar centros por tipo.
+  - Parámetros de ruta: `tipo` (String)
+  - Respuesta: `200 OK` con `List<CentroDeSalud>`
+
+- GET `/centros/{id}`
+  - Descripción: Obtener un centro de salud por ID.
+  - Parámetros de ruta: `id` (Long)
+  - Respuesta:
+    - `200 OK` con `CentroDeSalud`
+    - `404 Not Found` si no existe
+
+- GET `/centros/{id}/estado`
+  - Descripción: Obtener estado de aprobación del centro.
+  - Parámetros de ruta: `id` (Long)
+  - Respuesta:
+    - `200 OK` con JSON `{ "aprobado": boolean }`
+    - `404 Not Found` si no existe
+
+- GET `/centros/{id}/ambulancias`
+  - Descripción: Listar ambulancias asociadas a un centro.
+  - Parámetros de ruta: `id` (Long)
+  - Respuesta:
+    - `200 OK` con `List<Ambulancia>`
+    - `404 Not Found` si el centro no existe
+
+- GET `/centros/{id}/ultima-calificacion`
+  - Descripción: Obtener la última calificación del centro.
+  - Parámetros de ruta: `id` (Long)
+  - Respuesta:
+    - `200 OK` con JSON `{ "calificacion": number }`
+    - `404 Not Found` si no existe
+
+- POST `/centros`
+  - Descripción: Crear un nuevo centro de salud.
+  - Cuerpo: `CentroDeSalud`
+  - Respuesta:
+    - `201 Created` con el `CentroDeSalud` creado
+    - `400 Bad Request` si los datos son inválidos
+
+- PUT `/centros/{id}/nombre`
+  - Descripción: Actualizar el nombre de un centro de salud.
+  - Parámetros de ruta: `id` (Long)
+  - Cuerpo: JSON `{ "nombre": string }`
+  - Respuesta:
+    - `200 OK` con el `CentroDeSalud` actualizado
+    - `400 Bad Request` si los datos son inválidos
+
+- DELETE `/centros/{id}`
+  - Descripción: Eliminar un centro por ID.
+  - Parámetros de ruta: `id` (Long)
+  - Respuesta: `204 No Content`
+
+
+## RegionController
+Ruta base: `/regiones`
+
+- GET `/regiones`
+  - Descripción: Listar todas las regiones.
+  - Respuesta: `200 OK` con `List<Region>`
+
+- GET `/regiones/{id}`
+  - Descripción: Obtener una región por ID.
+  - Parámetros de ruta: `id` (Long)
+  - Respuesta:
+    - `200 OK` con `Region`
+    - `404 Not Found` si no existe
+
+- POST `/regiones`
+  - Descripción: Crear una nueva región.
+  - Cuerpo: `Region`
+  - Respuesta:
+    - `201 Created` con la `Region` creada
+    - `400 Bad Request` si los datos son inválidos
+
+- DELETE `/regiones/{id}`
+  - Descripción: Eliminar una región por ID.
+  - Parámetros de ruta: `id` (Long)
+  - Respuesta: `204 No Content`
+
+
+## TipoCentroController
+Ruta base: `/tipos-centro`
+
+- GET `/tipos-centro`
+  - Descripción: Listar todos los tipos de centro.
+  - Respuesta: `200 OK` con `List<TipoCentro>`
+
+- GET `/tipos-centro/{id}`
+  - Descripción: Obtener un tipo de centro por ID.
+  - Parámetros de ruta: `id` (Long)
+  - Respuesta:
+    - `200 OK` con `TipoCentro`
+    - `404 Not Found` si no existe
+
+- POST `/tipos-centro`
+  - Descripción: Crear un nuevo tipo de centro.
+  - Cuerpo: `TipoCentro`
+  - Respuesta:
+    - `201 Created` con el `TipoCentro` creado
+    - `400 Bad Request` si los datos son inválidos
+
+- DELETE `/tipos-centro/{id}`
+  - Descripción: Eliminar un tipo de centro por ID.
+  - Parámetros de ruta: `id` (Long)
+  - Respuesta: `204 No Content`
+
+
+---
+
+## Notas adicionales
+- Asegúrate de revisar los modelos de entidad (`entity` package) para conocer la estructura de los objetos enviados y recibidos.
+- Para datos de ejemplo cargados automáticamente, ver `config/DataLoader.java`.
+- El comportamiento exacto de validación y negocio se define en los servicios correspondientes (`service` package).
